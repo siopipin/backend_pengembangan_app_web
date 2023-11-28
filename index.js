@@ -78,20 +78,21 @@ app.get("/customers/:id", (req, res) => {
 app.post("/customers", (req, res) => {
   
   const data = req.body;
-  // connection.query("INSERT INTO tbl_users SET ?", [data], (err, result) => {
-  //   if(err) {
-  //     res.status(400).send(err)
-  //   } else {
-  //     if(result.affectedRows === 1) {
-  //       res.json({msg: "Success"})
-  //     } else {
-  //       res.json({msg: "not success"})
-  //     }
-  //   }
-  // })
+  connection.query("INSERT INTO tbl_users SET ?", [data], (err, result) => {
+    if(err) {
+      res.status(400).send(err)
+    } else {
+      if(result.affectedRows === 1) {
+        res.json({msg: "Success"})
+      } else {
+        res.json({msg: "not success"})
+      }
+    }
+  })
 
   const name = req.body.name1
-
+  
+  // contoh dengan placeholder
   const query = `INSERT INTO Customers (CustomerName, ContactName, Address City, PostalCode, Country) VALUES (?, ?, ?, ?,?,?)`
 
   connection.query(query, [name,b,c,d,e,f], (err, result) => {
