@@ -69,7 +69,11 @@ app.get("/customers/:id", (req, res) => {
       if(result.length <= 0) {
       res.status(404).send("tidak ada data")
       } else {
-        res.json({data: result})
+        connection.query("select * tbl_buku where idbuku = 1 and iduser= result[0].id ", (err, result) => {
+          // jika tidak ada kembalikan pesan error
+
+          // jika ada maka bos mu butuh data histori peminjaman
+        })
       }
     }
   })
@@ -106,8 +110,6 @@ app.post("/customers", (req, res) => {
       }
     }
   })
-
-
 })
 
 // tambahkan data customer
@@ -118,11 +120,12 @@ app.post("/product", formdata.none(), (req, res) => {
 });
 
 // route query
-
 app.get("/users/detail", (req, res) => {
   const jk = req.query.jk;
   const hobby = req.query.hobby;
 });
+
+// M11
 
 // jalankan server
 app.listen(port, () => {
