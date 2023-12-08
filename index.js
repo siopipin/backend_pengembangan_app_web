@@ -60,21 +60,20 @@ app.get("/customers", (req, res) => {
 });
 
 app.get("/customers/:id", (req, res) => {
-  const id = req.params.id
-
+  const id = req.params.id //1
   connection.query(`SELECT * FROM tbl_users WHERE id = ?`, [id], (err, result) => {
     if(err) {
       res.status(400).send("err")
     } else {
-      if(result.length <= 0) {
-      res.status(404).send("tidak ada data")
-      } else {
-        connection.query("select * tbl_buku where idbuku = 1 and iduser= result[0].id ", (err, result) => {
-          // jika tidak ada kembalikan pesan error
-
-          // jika ada maka bos mu butuh data histori peminjaman
-        })
-      }
+       // jika berhasil saya berharap ambil semua data buku yang sesuai dengan id buku dan id user
+        
+       connection.query(`select * tbl_buku where idbuku = ${result[0].idbuku} and iduser= ${id}`, (err, result) => {
+        if(err) {
+           res.status(400).send(err)
+         } else {
+           res.json({data: result})
+         }
+      })
     }
   })
 })
