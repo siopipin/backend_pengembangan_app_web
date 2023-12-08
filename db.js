@@ -1,18 +1,10 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: "localhost",
   user: "root", //sesuaikan dengan user database anda
   password: "root", //sesuaikan dengan password database anda
   database: "db_web",
-});
-
-connection.connect(function (err) {
-  if (err) {
-    console.log("koneksi gagal ", err);
-  } else {
-    console.log("connecting to database");
-  }
 });
 
 module.exports = connection;

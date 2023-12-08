@@ -3,6 +3,7 @@ const express = require("express");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const connection = require("./db.js");
+const webRoutes = require('./routes/web.js')
 
 // membuat instance express
 const app = express();
@@ -11,6 +12,7 @@ const port = 3001;
 // handler untuk parsing data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/web', webRoutes);
 
 // multer untuk upload file
 const storage = multer()
@@ -45,6 +47,8 @@ app.post("/users", (req, res) => {  // kirim data dari json body.
 app.post("/users-formdata", storage.none(), (req, res) => {  //storage.none() digunakan untuk terima form-data multipart
   res.send(req.body);
 })
+
+// tambahkan fungsi baru.
 
 // jalankan server
 app.listen(port, () => {
