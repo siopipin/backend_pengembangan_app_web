@@ -1,10 +1,10 @@
 
 const express = require('express');
 const routes = express.Router();
-const connection = require('../../db')
-const usersController = require('../../controllers/users')
+const usersController = require('../../controllers/users');
+const authenticateToken = require('../../middleware/auth');
 
 routes.get('/', usersController.users)
-routes.get('/detail', usersController.userDetailByID)
+routes.get('/:id', authenticateToken, usersController.userDetailByID)
 
 module.exports = routes;
