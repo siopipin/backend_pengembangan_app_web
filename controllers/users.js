@@ -22,7 +22,6 @@ async function userDetailByID(req, res) {
     message: "User found",
     data: result[0],
   });
-
 }
 
 module.exports = {

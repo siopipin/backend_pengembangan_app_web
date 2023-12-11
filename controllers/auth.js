@@ -28,6 +28,22 @@ async function login(req, res) {
   }
 }
 
+async function userDetailByID(req, res) {
+  const { id } = req.params;
+  const result = await usersModel.usersDetailByID(id);
+  if(result.length <= 0) {
+    res.json({
+      message: "User not found",
+    });
+    return;
+  }
+  res.json({
+    message: "User found",
+    data: result[0],
+  });
+}
+
 module.exports = {
     login,
+    userDetailByID
 }
