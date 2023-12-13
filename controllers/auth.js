@@ -14,7 +14,7 @@ async function login(req, res) {
 
     const token = jwt.sign(
       { id: result[0].id, name: result[0].name },
-      "secret",
+      "irvan098867",
       { expiresIn: "2 days" }
     );
 
