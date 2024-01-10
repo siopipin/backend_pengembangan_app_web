@@ -2,15 +2,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const webRoutes = require('./routes/web.js')
+const cors = require('cors')
+
 
 // membuat instance express
 const app = express();
 const port = 3001;
 
+
 // handler untuk parsing data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cors())
 // middleware use route
 app.use('/web', webRoutes);
 

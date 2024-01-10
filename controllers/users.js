@@ -3,7 +3,8 @@ const usersModel = require("../models/users_model");
 async function users(req, res) {
   try {
     const result = await usersModel.users();
-    res.json({ data: result });
+    console.log(result);
+    res.json({ results: result });
   } catch (err) {
     console.log(err);
   }
