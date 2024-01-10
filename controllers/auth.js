@@ -2,7 +2,7 @@ const usersModel = require("../models/users_model");
 const jwt = require("jsonwebtoken");
 async function login(req, res) {
   try {
-    const { id } = req.body; //seharusnya butuh password.
+    const { id, password } = req.body; //seharusnya butuh password.
     
     const result = await usersModel.usersDetailByID(id);
     if (result.length <= 0) {
@@ -14,7 +14,7 @@ async function login(req, res) {
 
     const token = jwt.sign(
       { id: result[0].id, name: result[0].name },
-      "irvan098867",
+      "sio12345",
       { expiresIn: "2 days" }
     );
 
