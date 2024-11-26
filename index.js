@@ -20,6 +20,12 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.post("/produk", (req, res) => {
+    console.log(req.body);
+    
+    res.send("Hello World!");
+  });
+
 // route user
 app.get("/users", (req, res) => {
   connection.query("SELECT * FROM tbl_users", (err, result) => {
@@ -37,7 +43,11 @@ app.post("/users", (req, res) => {  // kirim data dari json body.
       console.log(err);
       return;
     } else {
-      res.send(result);
+      res.status(201).json({
+        "status": 201,
+        "message": "User added successfully",
+        "id": result.insertId,
+      });
     }
   })
 })
