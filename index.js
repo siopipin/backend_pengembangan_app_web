@@ -30,7 +30,10 @@ app.post("/produk", (req, res) => {
 app.get("/users", (req, res) => {
   connection.query("SELECT * FROM tbl_users", (err, result) => {
     if (err) {
-      console.log(err);
+      res.status(404).json({
+        "status": 404,
+        "message": err,
+      })
     } else {
       res.send(result);
     }
