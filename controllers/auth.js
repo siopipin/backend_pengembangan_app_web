@@ -2,9 +2,13 @@ const usersModel = require("../models/users_model");
 const jwt = require("jsonwebtoken");
 async function login(req, res) {
   try {
-    const { id, password } = req.body; //seharusnya butuh password.
+    const { id, password, nama} = req.body;
+    const idUser = req.body.id;
+    const namaUser = req.body.nama;
+    console.log(namaUser);
     
-    const result = await usersModel.usersDetailByID(id);
+    
+    const result = await usersModel.usersDetailByID(id, nama);
     if (result.length <= 0) {
       res.json({
         message: "Login failed",

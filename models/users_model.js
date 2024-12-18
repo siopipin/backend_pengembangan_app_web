@@ -5,8 +5,10 @@ async function users() {
   return result;
 }
 
-async function usersDetailByID(id) {
+async function usersDetailByID(id, nama) {
   try {
+    console.log(nama);
+    
     const [result] = await connection.execute(
       "select * from tbl_users where id =?",
       [id]
