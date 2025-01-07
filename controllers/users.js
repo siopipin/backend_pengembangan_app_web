@@ -4,7 +4,7 @@ async function users(req, res) {
   try {
     const result = await usersModel.users();
     console.log(result);
-    res.json({ results: result });
+    res.status(201).json({ dataUsers: result });
   } catch (err) {
     console.log(err);
   }
